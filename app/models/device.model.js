@@ -1,16 +1,16 @@
 var mongoose = require('mongoose');
 
-var Schema = mongoose.Schema,
-    ObjectId = Schema.ObjectId;
+var Schema = mongoose.Schema;
+    
 
-var DeviceSchema = mongoose.Schema({
-    platform: Date,
-    deviceName: Date,
-    status: Number,
+var DeviceSchema = new Schema({
+    platform: String,
+    deviceName: String,
+    status: String,
     platformVersion: String,
     runsOn: String,
     udid: String,
-    buildId: ObjectId
+    buildId: {type: Schema.Types.ObjectId, ref: 'Build'},
 }, {
     timestamps: false
 });

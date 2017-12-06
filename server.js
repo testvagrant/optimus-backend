@@ -12,6 +12,7 @@ app.use(bodyParser.json())
 
 var dbConfig = require('./config/database.config.js');
 var mongoose = require('mongoose');
+var Grid = require('gridfs-stream');
 
 mongoose.connect(dbConfig.url);
 
@@ -30,8 +31,10 @@ app.get('/', function(req, res){
     res.json({"message": "Welcome to Optimus."});
 });
 
-// Require Builds routes
+// Require  routes
 require('./app/routes/build.routes.js')(app);
+require('./app/routes/device.routes.js')(app);
+require('./app/routes/scenario.routes.js')(app);
 
 // listen for requests
 app.listen(3000, function(){
