@@ -9,7 +9,7 @@ exports.create = function(req, res) {
         startTime: req.body.startTime, 
         endTime: req.body.endTime, 
         timeTaken: req.body.timeTaken, 
-        buildId: req.body.buildId.
+        buildId: req.body.buildId,
         completed: req.body.completed,
         scenarioTimelime: req.body.scenarioTimelime, 
         steps: req.body.steps,

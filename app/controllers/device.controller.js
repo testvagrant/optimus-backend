@@ -45,6 +45,17 @@ exports.findOne = function(req, res) {
     });
 };
 
+exports.findBy = function(req, res) {
+    
+    Device.findBy(req.params.udid, function(err, data) {
+        if(err) {
+            res.status(500).send({message: "Could not retrieve device with id " + req.params.udid});
+        } else {
+            res.send(data);
+        }
+    });
+};
+
 exports.update = function(req, res) {
     
      Device.findById(req.params.deviceId, function(err, device) {
