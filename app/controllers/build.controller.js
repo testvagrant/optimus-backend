@@ -1,11 +1,10 @@
 var Build = require('../models/build.model.js');
 
 exports.create = function(req, res) {
-     // Create and Save a new build
-    if(!req.body.content) {
-        return res.status(400).send({message: "build can not be empty"});
-    }
-    var build = new Build({title: req.body.title || "Untitled Build", content: req.body.content});
+    var build = new Build({buildStartTime: req.body.buildStartTime, 
+        buildEndTime: req.body.buildEndTime, 
+        scenariosCount: req.body.scenariosCount, 
+        scenarioSuccessRate: req.body.scenarioSuccessRate});
 
     build.save(function(err, data) {
         console.log(data);

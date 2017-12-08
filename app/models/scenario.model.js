@@ -4,14 +4,14 @@ var Schema = mongoose.Schema;
 var nonFunctional = new Schema({
 	interval : Number , 
     	cpuData : {
-    		user: String
+    		user: String,
     		kernel: String
     	},
     	memoryData: {
     		total: String,
     		actual: String
     	},
-    	activity: String
+    	activity: String,
     	screenshotFileName: String 
 })
 
@@ -25,7 +25,7 @@ var steps = new Schema({
 var ScenarioSchema = new Schema({
     scenarioName: String,
     deviceUdid: String,
-    tags: Array
+    tags: Array,
     startTime: Date,
     buildId: {type: Schema.Types.ObjectId, ref: 'Build'},
     status: String,

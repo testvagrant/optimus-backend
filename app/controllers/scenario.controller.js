@@ -2,10 +2,19 @@ var Scenario = require('../models/scenario.model.js');
 
 exports.create = function(req, res) {
      
-    if(!req.body.content) {
-        return res.status(400).send({message: "scenario can not be empty"});
-    }
-    var scenario = new Scenario({title: req.body.title || "Untitled Scenario", content: req.body.content});
+    
+    var scenario = new Scenario({scenarioName: req.body.scenarioName, 
+        deviceUdid: req.body.deviceUdid, 
+        tags: req.body.tags, 
+        startTime: req.body.startTime, 
+        endTime: req.body.endTime, 
+        timeTaken: req.body.timeTaken, 
+        buildId: req.body.buildId.
+        completed: req.body.completed,
+        scenarioTimelime: req.body.scenarioTimelime, 
+        steps: req.body.steps,
+        failedOnScreen: req.body.failedOnScreen
+    });
 
     scenario.save(function(err, data) {
         console.log(data);

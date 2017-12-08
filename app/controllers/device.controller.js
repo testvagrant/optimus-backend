@@ -2,10 +2,14 @@ var Device = require('../models/device.model.js');
 
 exports.create = function(req, res) {
      
-    if(!req.body.content) {
-        return res.status(400).send({message: "device can not be empty"});
-    }
-    var device = new Device({title: req.body.title || "Untitled Device", content: req.body.content});
+    
+    var device = new Device({platform: req.body.platform, 
+        platformVersion: req.body.platformVersion, 
+        deviceName: req.body.deviceName, 
+        status: req.body.status, 
+        runsOn: req.body.runsOn, 
+        udid: req.body.udid, 
+        buildId: req.body.buildId});
 
     device.save(function(err, data) {
         console.log(data);
