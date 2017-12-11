@@ -45,15 +45,27 @@ exports.findOne = function(req, res) {
     });
 };
 
-exports.findBy = function(req, res) {
+exports.find = function(req, res) {
     
-    Device.findBy(req.params.udid, function(err, data) {
-        if(err) {
-            res.status(500).send({message: "Could not retrieve device with id " + req.params.udid});
-        } else {
-            res.send(data);
-        }
+    var query = {};
+    if (req.udid)
+        query.udid = req.udid
+
+    Device.find(query).exec(function(err, res){
+    console.log(res);
     });
+    // Device.find()
+    // .where('udid',req.params.udid)
+    // .limit(1)
+    // .exec(callback)
+
+    // Device.findBy(req.params.udid, function(err, data) {
+    //     if(err) {
+    //         res.status(500).send({message: "Could not retrieve device with id " + req.params.udid});
+    //     } else {
+    //         res.send(data);
+    //     }
+    // });
 };
 
 exports.update = function(req, res) {

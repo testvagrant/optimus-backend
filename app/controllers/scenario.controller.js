@@ -50,6 +50,27 @@ exports.findOne = function(req, res) {
     });
 };
 
+
+exports.find = function(req, res) {
+    
+    var query = {};
+    if (req.scenarioName)
+        query.scenarioName = req.scenarioName
+
+    if(req.deviceUdid)
+        query.deviceUdid = req.deviceUdid
+
+    Scenario.find(query)
+    // .select('startTime')
+    .sort({ 
+        startTime: -1 })
+    .limit(1)
+    .exec(function(err, res){
+    console.log(res);
+    });
+};
+
+
 exports.update = function(req, res) {
     
      Scenario.findById(req.params.scenarioId, function(err, scenario) {
@@ -57,13 +78,26 @@ exports.update = function(req, res) {
             res.status(500).send({message: "Could not find a scenario with id " + req.params.scenarioId});
         }
 
-        scenario.status = req.body.status;
-        scenario.completed = req.body.completed;
-        scenario.endTime = req.body.endTime;
-        scenario.timeTaken = req.body.timeTaken;
-        scenario.scenarioTimelime = req.body.scenarioTimelime;
-        scenario.steps = req.body.steps;
-        scenario.failedOnScreen = req.body.failedOnScreen;
+        if(req.body.status)
+            scenario.status = req.body.status;
+
+        if(req.body.completed)
+            scenario.completed = req.body.completed;
+
+        if(req.body.endTime)
+            scenario.endTime = req.body.endTime;
+
+        if(req.body.timeTaken)
+            scenario.timeTaken = req.body.timeTaken;
+
+        if(req.body.scenarioTimelime)
+            scenario.scenarioTimelime = req.body.scenarioTimelime;
+
+        if(req.body.steps)
+            scenario.steps = req.body.steps;
+
+        if(req.body.failedOnScreen)
+            scenario.failedOnScreen = req.body.failedOnScreen;
         
 
         scenario.save(function(err, data){

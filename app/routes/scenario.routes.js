@@ -11,4 +11,6 @@ module.exports = function(app) {
     app.put('/scenarios/:scenarioId', scenarios.update);
 
     app.delete('/scenarios/:scenarioId', scenarios.delete);
+
+    app.get('/scenarios', scenarios.find);
 }

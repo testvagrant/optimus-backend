@@ -11,7 +11,7 @@ module.exports = function(app) {
     // Retrieve a single device with deviceId
     app.get('/devices/:deviceId', devices.findOne);
 
-    app.get('/devices', devices.findBy)
+    app.get('/devices', devices.find);
 
     // Update a device with deviceId
     app.put('/devices/:deviceId', devices.update);
